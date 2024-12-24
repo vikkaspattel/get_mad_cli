@@ -1,4 +1,4 @@
-library get_mad_cli.extensions;
+library;
 
 export 'package:get_mad_cli/core/internationalization.dart' show TranslationExt;
 export 'package:get_mad_cli/extensions/dart_code.dart';
