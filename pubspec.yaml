@@ -1,0 +1,29 @@
+name: get_mad_cli
+version: 0.0.1
+homepage: 'https://github.com/vikkaspattel/get_mad_cli'
+description: 'UnOfficial Mad version of get_cli, for version 1.8.2'
+environment:
+  sdk: ">=2.19.0 <4.0.0"
+
+dependencies:
+  ansicolor: ">=2.0.1 <3.0.0"
+  collection: ">=1.15.0 <2.0.0"
+  dart_style: ">=2.0.1 <3.0.0"
+  dcli: ^6.1.0
+  http: ">=0.13.4 <2.0.0"
+  intl: ">=0.17.0 <1.0.0"
+  meta: ">=1.7.0 <2.0.0"
+  path: ">=1.8.0  <2.0.0"
+  process_run: ">=0.12.2 <1.0.0"
+  pubspec: ">=2.0.1 <3.0.0"
+  recase: ">=4.0.0 <5.0.0"
+  version: ">=2.0.0 <4.0.0"
+  yaml: ">=3.1.0 <4.0.0"
+
+dev_dependencies:
+  lints: ^5.1.1
+  test: ^1.25.14
+
+executables:
+  mad: get
+  madx: get
