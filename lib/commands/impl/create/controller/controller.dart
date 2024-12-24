@@ -31,6 +31,7 @@ class CreateControllerCommand extends Command {
   @override
   String get codeSample => 'get create controller:name [OPTINAL PARAMETERS] \n'
       '${LocaleKeys.optional_parameters.trArgs(['[on, with]'])} ';
+
   @override
   bool validate() {
     super.validate();
@@ -49,12 +50,10 @@ class CreateControllerCommand extends Command {
 
   @override
   Future<void> execute() async {
-    return createController(name,
-        withArgument: withArgument, onCommand: onCommand);
+    return createController(name, withArgument: withArgument, onCommand: onCommand);
   }
 
-  Future<void> createController(String name,
-      {String withArgument = '', String onCommand = ''}) async {
+  Future<void> createController(String name, {String withArgument = '', String onCommand = ''}) async {
     var sample = ControllerSample('', name, PubspecUtils.isServerProject);
     if (withArgument.isNotEmpty) {
       if (isURL(withArgument)) {
@@ -63,8 +62,7 @@ class CreateControllerCommand extends Command {
           var content = res.body;
           sample.customContent = replaceVars(content, name);
         } else {
-          throw CliException(
-              LocaleKeys.error_failed_to_connect.trArgs([withArgument]));
+          throw CliException(LocaleKeys.error_failed_to_connect.trArgs([withArgument]));
         }
       } else {
         var file = File(withArgument);
@@ -72,8 +70,7 @@ class CreateControllerCommand extends Command {
           var content = file.readAsStringSync();
           sample.customContent = replaceVars(content, name);
         } else {
-          throw CliException(
-              LocaleKeys.error_no_valid_file_or_url.trArgs([withArgument]));
+          throw CliException(LocaleKeys.error_no_valid_file_or_url.trArgs([withArgument]));
         }
       }
     }
@@ -86,8 +83,7 @@ class CreateControllerCommand extends Command {
       'controllers',
     );
 
-    var binindingPath =
-        findBindingFromName(controllerFile.path, basename(onCommand));
+    var binindingPath = findBindingFromName(controllerFile.path, basename(onCommand));
     var pathSplit = Structure.safeSplitPath(controllerFile.path);
     pathSplit.remove('.');
     pathSplit.remove('lib');

@@ -6,6 +6,7 @@ import '../../interface/command.dart';
 class UpdateCommand extends Command {
   @override
   String get commandName => 'update';
+
   @override
   List<String> get acceptedFlags => ['-f', '--git'];
 

@@ -17,6 +17,7 @@ import '../../init/flutter/init.dart';
 class CreateProjectCommand extends Command {
   @override
   String get commandName => 'project';
+
   @override
   Future<void> execute() async {
     final menu = Menu([
@@ -32,8 +33,7 @@ class CreateProjectCommand extends Command {
       nameProject = ask(LocaleKeys.ask_name_to_project.tr);
     }
 
-    var path = Structure.replaceAsExpected(
-        path: Directory.current.path + p.separator + nameProject.snakeCase);
+    var path = Structure.replaceAsExpected(path: Directory.current.path + p.separator + nameProject.snakeCase);
     await Directory(path).create(recursive: true);
 
     Directory.current = path;
@@ -52,14 +52,12 @@ class CreateProjectCommand extends Command {
         '${LocaleKeys.example.tr} com.yourcompany \x1B[0m',
       );
 
-      final iosLangMenu =
-          Menu(['Swift', 'Objective-C'], title: LocaleKeys.ask_ios_lang.tr);
+      final iosLangMenu = Menu(['Swift', 'Objective-C'], title: LocaleKeys.ask_ios_lang.tr);
       final iosResult = iosLangMenu.choose();
 
       var iosLang = iosResult.index == 0 ? 'swift' : 'objc';
 
-      final androidLangMenu =
-          Menu(['Kotlin', 'Java'], title: LocaleKeys.ask_android_lang.tr);
+      final androidLangMenu = Menu(['Kotlin', 'Java'], title: LocaleKeys.ask_android_lang.tr);
       final androidResult = androidLangMenu.choose();
 
       var androidLang = androidResult.index == 0 ? 'kotlin' : 'java';
@@ -77,17 +75,11 @@ class CreateProjectCommand extends Command {
       switch (linterResult.index) {
         case 0:
           if (PubspecUtils.isServerProject) {
-            await PubspecUtils.addDependencies('lints',
-                isDev: true, runPubGet: true);
-            AnalysisOptionsSample(
-                    include: 'include: package:lints/recommended.yaml')
-                .create();
+            await PubspecUtils.addDependencies('lints', isDev: true, runPubGet: true);
+            AnalysisOptionsSample(include: 'include: package:lints/recommended.yaml').create();
           } else {
-            await PubspecUtils.addDependencies('flutter_lints',
-                isDev: true, runPubGet: true);
-            AnalysisOptionsSample(
-                    include: 'include: package:flutter_lints/flutter.yaml')
-                .create();
+            await PubspecUtils.addDependencies('flutter_lints', isDev: true, runPubGet: true);
+            AnalysisOptionsSample(include: 'include: package:flutter_lints/flutter.yaml').create();
           }
           break;
 

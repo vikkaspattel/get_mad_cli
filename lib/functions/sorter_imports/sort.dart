@@ -30,9 +30,7 @@ String sortImports(
 
   var stringLine = false;
   for (var i = 0; i < lines.length; i++) {
-    if (lines[i].startsWith('import ') &&
-        !stringLine &&
-        lines[i].endsWith(';')) {
+    if (lines[i].startsWith('import ') && !stringLine && lines[i].endsWith(';')) {
       if (lines[i].contains('dart:')) {
         dartImports.add(lines[i]);
       } else if (lines[i].contains('package:flutter/')) {
@@ -46,13 +44,9 @@ String sortImports(
           packageImports.add(lines[i]);
         }
       }
-    } else if (lines[i].startsWith('export ') &&
-        lines[i].endsWith(';') &&
-        !stringLine) {
+    } else if (lines[i].startsWith('export ') && lines[i].endsWith(';') && !stringLine) {
       exports.add(lines[i]);
-    } else if (lines[i].startsWith('library ') &&
-        lines[i].endsWith(';') &&
-        !stringLine) {
+    } else if (lines[i].startsWith('library ') && lines[i].endsWith(';') && !stringLine) {
       librarys.add(lines[i]);
     } else {
       var containsThreeQuotes = lines[i].contains("'''");
@@ -63,12 +57,7 @@ String sortImports(
     }
   }
 
-  if (dartImports.isEmpty &&
-      flutterImports.isEmpty &&
-      packageImports.isEmpty &&
-      projectImports.isEmpty &&
-      projectRelativeImports.isEmpty &&
-      exports.isEmpty) {
+  if (dartImports.isEmpty && flutterImports.isEmpty && packageImports.isEmpty && projectImports.isEmpty && projectRelativeImports.isEmpty && exports.isEmpty) {
     return content;
   }
 
@@ -78,8 +67,7 @@ String sortImports(
     projectRelativeImports.replaceAll(_replacePath);
   }
   if (filePath.isNotEmpty && useRelative) {
-    projectImports
-        .replaceAll((element) => replaceToRelativeImport(element, filePath));
+    projectImports.replaceAll((element) => replaceToRelativeImport(element, filePath));
     projectRelativeImports.addAll(projectImports);
     projectImports.clear();
   }
@@ -94,23 +82,8 @@ String sortImports(
 
   var sortedLines = <String>[];
 
-  sortedLines.addAll([
-    ...librarys,
-    '',
-    ...dartImports,
-    '',
-    ...flutterImports,
-    '',
-    ...packageImports,
-    '',
-    ...projectImports,
-    '',
-    ...projectRelativeImports,
-    '',
-    ...exports,
-    '',
-    ...contentLines
-  ]);
+  sortedLines.addAll(
+      [...librarys, '', ...dartImports, '', ...flutterImports, '', ...packageImports, '', ...projectImports, '', ...projectRelativeImports, '', ...exports, '', ...contentLines]);
 
   return formatterDartFile(sortedLines.join('\n'));
 }

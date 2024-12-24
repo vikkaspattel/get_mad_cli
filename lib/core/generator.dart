@@ -11,6 +11,7 @@ class GetCli {
   }
 
   static GetCli? _instance;
+
   static GetCli? get to => _instance;
 
   static List<String> get arguments => to!._arguments;
@@ -21,11 +22,8 @@ class GetCli {
     try {
       final currentArgument = arguments[currentIndex].split(':').first;
 
-      var command = commands.firstWhere(
-          (command) =>
-              command.commandName == currentArgument ||
-              command.alias.contains(currentArgument),
-          orElse: () => ErrorCommand('command not found'));
+      var command =
+          commands.firstWhere((command) => command.commandName == currentArgument || command.alias.contains(currentArgument), orElse: () => ErrorCommand('command not found'));
       if (command.childrens.isNotEmpty) {
         if (command is CommandParent) {
           command = _findCommand(++currentIndex, command.childrens);
@@ -50,7 +48,9 @@ class ErrorCommand extends Command {
   @override
   String get commandName => 'onerror';
   String error;
+
   ErrorCommand(this.error);
+
   @override
   Future<void> execute() async {
     LogService.error(error);

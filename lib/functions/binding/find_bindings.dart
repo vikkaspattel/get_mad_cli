@@ -14,13 +14,10 @@ String findBindingFromName(String path, String name) {
 
   var bindingPath = '';
   while (splitPath.isNotEmpty && bindingPath == '') {
-    Directory(splitPath.join(separator))
-        .listSync(recursive: true, followLinks: false)
-        .forEach((element) {
+    Directory(splitPath.join(separator)).listSync(recursive: true, followLinks: false).forEach((element) {
       if (element is File) {
         var fileName = basename(element.path);
-        if (fileName == '${name.snakeCase}_binding.dart' ||
-            fileName == '${name.snakeCase}.controller.binding.dart') {
+        if (fileName == '${name.snakeCase}_binding.dart' || fileName == '${name.snakeCase}.controller.binding.dart') {
           bindingPath = element.path;
         }
       }

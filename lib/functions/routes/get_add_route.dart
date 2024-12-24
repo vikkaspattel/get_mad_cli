@@ -8,7 +8,6 @@ import '../../core/internationalization.dart';
 import '../../core/locales.g.dart';
 import '../../extensions.dart';
 import '../../samples/impl/get_route.dart';
-import '../create/create_single_file.dart';
 import '../find_file/find_file_by_name.dart';
 import 'get_app_pages.dart';
 import 'get_support_children.dart';
@@ -36,8 +35,7 @@ void addRoute(String nameRoute, String bindingDir, String viewDir) {
   pathSplit.removeWhere((element) => element == 'app' || element == 'pages');
 
   for (var i = 0; i < pathSplit.length; i++) {
-    pathSplit[i] =
-        pathSplit[i].snakeCase.snakeCase.toLowerCase().replaceAll('_', '-');
+    pathSplit[i] = pathSplit[i].snakeCase.snakeCase.toLowerCase().replaceAll('_', '-');
   }
   var route = pathSplit.join('/');
 
@@ -52,8 +50,7 @@ void addRoute(String nameRoute, String bindingDir, String viewDir) {
 
   addAppPage(nameRoute, bindingDir, viewDir);
 
-  LogService.success(
-      Translation(LocaleKeys.sucess_route_created).trArgs([nameRoute]));
+  LogService.success(Translation(LocaleKeys.sucess_route_created).trArgs([nameRoute]));
 }
 
 /// Create routes from the path

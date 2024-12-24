@@ -11,23 +11,16 @@ class ProviderSample extends Sample {
   final String modelPath;
   String? _namePascal;
   String? _nameLower;
-  ProviderSample(this._fileName,
-      {bool overwrite = false,
-      this.createEndpoints = false,
-      this.modelPath = '',
-      this.isServer = false,
-      String path = ''})
+
+  ProviderSample(this._fileName, {bool overwrite = false, this.createEndpoints = false, this.modelPath = '', this.isServer = false, String path = ''})
       : super(path, overwrite: overwrite) {
     _namePascal = _fileName.pascalCase;
     _nameLower = _fileName.toLowerCase();
   }
 
-  String get _import => isServer
-      ? "import 'package:get_server/get_server.dart';"
-      : "import 'package:get_mad/get.dart';";
-  String get _importModelPath => createEndpoints
-      ? "import 'package:${PubspecUtils.projectName}/$modelPath';\n"
-      : '\n';
+  String get _import => isServer ? "import 'package:get_server/get_server.dart';" : "import 'package:get_mad/get.dart';";
+
+  String get _importModelPath => createEndpoints ? "import 'package:${PubspecUtils.projectName}/$modelPath';\n" : '\n';
 
   @override
   String get content => '''$_import
@@ -41,7 +34,7 @@ $_defaultEndpoint}
 ''';
 
   String get _defaultEndpoint => createEndpoints
-      ? ''' 
+      ? '''
 \tFuture<$_namePascal?> get$_namePascal(int id) async {
 \t\tfinal response = await get('$_nameLower/\$id');
 \t\treturn response.body;
@@ -54,6 +47,7 @@ $_defaultEndpoint}
 \t\tawait delete('$_nameLower/\$id');
 '''
       : '\n';
+
   String get _defaultEncoder => createEndpoints
       ? '''\t\thttpClient.defaultDecoder = (map){
 if(map is Map<String, dynamic>) return $_namePascal.fromJson(map); 

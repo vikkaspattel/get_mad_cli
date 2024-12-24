@@ -109,6 +109,7 @@ mixin ArgsMixin {
     return _args.contains(flag);
   }
 }
+
 List<String> _getArgs() {
   var args = List.of(GetCli.arguments);
   _removeDefaultArgs(args);

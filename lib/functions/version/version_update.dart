@@ -14,10 +14,8 @@ import 'print_get_cli.dart';
 void checkForUpdate() async {
   if (!CliConfig.updateIsCheckingToday()) {
     if (!isDevVersion()) {
-      await PubDevApi.getLatestVersionFromPackage('get_mad_cli')
-          .then((versionInPubDev) async {
-        await PubspecLock.getVersionCli(disableLog: true)
-            .then((versionInstalled) async {
+      await PubDevApi.getLatestVersionFromPackage('get_mad_cli').then((versionInPubDev) async {
+        await PubspecLock.getVersionCli(disableLog: true).then((versionInstalled) async {
           if (versionInstalled == null) exit(2);
 
           final v1 = Version.parse(versionInPubDev!);
@@ -25,18 +23,11 @@ void checkForUpdate() async {
           final needsUpdate = v1.compareTo(v2);
           // needs update.
           if (needsUpdate == 1) {
-            LogService.info(Translation(
-                    LocaleKeys.info_update_available.trArgs([versionInstalled]))
-                .toString());
+            LogService.info(Translation(LocaleKeys.info_update_available.trArgs([versionInstalled])).toString());
             //await versionCommand();
             printGetCli();
             final String codeSample = LogService.code('get update');
-            LogService.info(
-                '${LocaleKeys.info_update_available2.trArgs([
-                      versionInPubDev
-                    ])}${' $codeSample'}',
-                false,
-                true);
+            LogService.info('${LocaleKeys.info_update_available2.trArgs([versionInPubDev])}${' $codeSample'}', false, true);
           }
         });
       });

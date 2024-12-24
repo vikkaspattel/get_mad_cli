@@ -1,5 +1,4 @@
-final _unsuportedCharacters = RegExp(
-    r'''^[\n\t ,[\]{}#&*!|<>'"%@']|^[?-]$|^[?-][ \t]|[\n:][ \t]|[ \t]\n|[\n\t ]#|[\n\t :]$''');
+final _unsuportedCharacters = RegExp(r'''^[\n\t ,[\]{}#&*!|<>'"%@']|^[?-]$|^[?-][ \t]|[\n:][ \t]|[ \t]\n|[\n\t ]#|[\n\t :]$''');
 
 class CliYamlToString {
   const CliYamlToString({
@@ -21,11 +20,9 @@ class CliYamlToString {
     _writeYamlString(node, 0, sink, true, false);
   }
 
-  void _writeYamlString(node, int indentCount, StringSink stringSink,
-      bool isTopLevel, bool isList) {
+  void _writeYamlString(node, int indentCount, StringSink stringSink, bool isTopLevel, bool isList) {
     if (node is Map) {
-      _mapToYamlString(node.cast<String, dynamic>(), indentCount, stringSink,
-          isTopLevel, isList);
+      _mapToYamlString(node.cast<String, dynamic>(), indentCount, stringSink, isTopLevel, isList);
     } else if (node is Iterable) {
       _listToYamlString(node, indentCount, stringSink, isTopLevel);
     } else if (node is String) {
@@ -91,10 +88,7 @@ class CliYamlToString {
   }
 
   Iterable<String> _sortKeys(Map<String, dynamic> map) {
-    final simple = <String>[],
-        maps = <String>[],
-        lists = <String>[],
-        other = <String>[];
+    final simple = <String>[], maps = <String>[], lists = <String>[], other = <String>[];
 
     map.forEach((key, value) {
       if (value is String) {
@@ -129,6 +123,5 @@ class CliYamlToString {
     }
   }
 
-  void _writeIndent(int indentCount, StringSink stringSink) =>
-      stringSink.write(indent * indentCount);
+  void _writeIndent(int indentCount, StringSink stringSink) => stringSink.write(indent * indentCount);
 }

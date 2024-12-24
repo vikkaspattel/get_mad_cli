@@ -20,9 +20,7 @@ class InitCommand extends Command {
     ], title: 'Which architecture do you want to use?');
     final result = menu.choose();
 
-    result.index == 0
-        ? await createInitGetxPattern()
-        : await createInitKatekko();
+    result.index == 0 ? await createInitGetxPattern() : await createInitKatekko();
     if (!PubspecUtils.isServerProject) {
       await ShellUtils.pubGet();
     }

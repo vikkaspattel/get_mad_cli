@@ -59,7 +59,6 @@ void addDependencyToBinding(String path, String controllerName, String import) {
           () => ${controllerName.pascalCase}Controller(),
 );''');
     writeFile(file.path, lines.join('\n'), overwrite: true, logger: false);
-    LogService.success(LocaleKeys.sucess_add_controller_in_bindings
-        .trArgs([controllerName.pascalCase, path]));
+    LogService.success(LocaleKeys.sucess_add_controller_in_bindings.trArgs([controllerName.pascalCase, path]));
   }
 }

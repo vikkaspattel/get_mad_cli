@@ -29,20 +29,16 @@ class ShellUtils {
         verbose: true);
   }
 
-  static Future<void> update(
-      [bool isGit = false, bool forceUpdate = false]) async {
+  static Future<void> update([bool isGit = false, bool forceUpdate = false]) async {
     isGit = GetCli.arguments.contains('--git');
     forceUpdate = GetCli.arguments.contains('-f');
     if (!isGit && !forceUpdate) {
-      var versionInPubDev =
-          await PubDevApi.getLatestVersionFromPackage('get_mad_cli');
+      var versionInPubDev = await PubDevApi.getLatestVersionFromPackage('get_mad_cli');
 
       var versionInstalled = await PubspecLock.getVersionCli(disableLog: true);
 
       if (versionInstalled == versionInPubDev) {
-        return LogService.info(
-            Translation(LocaleKeys.info_cli_last_version_already_installed.tr)
-                .toString());
+        return LogService.info(Translation(LocaleKeys.info_cli_last_version_already_installed.tr).toString());
       }
     }
 
@@ -51,17 +47,13 @@ class ShellUtils {
     try {
       if (Platform.script.path.contains('flutter')) {
         if (isGit) {
-          await run(
-              'flutter pub global activate -sgit https://github.com/jonataslaw/get_mad_cli/',
-              verbose: true);
+          await run('flutter pub global activate -sgit https://github.com/jonataslaw/get_mad_cli/', verbose: true);
         } else {
           await run('flutter pub global activate get_mad_cli', verbose: true);
         }
       } else {
         if (isGit) {
-          await run(
-              'flutter pub global activate -sgit https://github.com/jonataslaw/get_mad_cli/',
-              verbose: true);
+          await run('flutter pub global activate -sgit https://github.com/jonataslaw/get_mad_cli/', verbose: true);
         } else {
           await run('flutter pub global activate get_mad_cli', verbose: true);
         }

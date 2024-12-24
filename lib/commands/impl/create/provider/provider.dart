@@ -7,11 +7,11 @@ import '../../../interface/command.dart';
 class CreateProviderCommand extends Command {
   @override
   String get commandName => 'provider';
+
   @override
   Future<void> execute() async {
     var name = this.name;
-    handleFileCreate(name, 'provider', onCommand, onCommand.isNotEmpty,
-        ProviderSample(name), onCommand.isNotEmpty ? 'providers' : '');
+    handleFileCreate(name, 'provider', onCommand, onCommand.isNotEmpty, ProviderSample(name), onCommand.isNotEmpty ? 'providers' : '');
   }
 
   @override

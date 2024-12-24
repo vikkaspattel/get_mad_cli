@@ -11,7 +11,6 @@ import '../../../../samples/impl/getx_pattern/get_main.dart';
 import '../../commads_export.dart';
 import '../../install/install_get.dart';
 
-
 Future<void> createInitGetxPattern() async {
   var canContinue = await createMain();
   if (!canContinue) return;
@@ -48,7 +47,6 @@ part 'extensions/get_interface.dart';
   ''';
 
   await extension.writeAsString(extensionCode, mode: FileMode.write);
-
 
   var getInterfaceExtension = File(Structure.replaceAsExpected(path: 'lib/app/utils/extensions/get_interface.dart'));
   var getInterfaceCode = '''

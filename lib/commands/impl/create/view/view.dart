@@ -16,6 +16,7 @@ import '../../../interface/command.dart';
 class CreateViewCommand extends Command {
   @override
   String get commandName => 'view';
+
   @override
   String? get hint => Translation(LocaleKeys.hint_create_view).tr;
 
@@ -36,8 +37,7 @@ class CreateViewCommand extends Command {
   int get maxParameters => 0;
 }
 
-Future<void> createView(String name,
-    {String withArgument = '', String onCommand = ''}) async {
+Future<void> createView(String name, {String withArgument = '', String onCommand = ''}) async {
   var sample = GetViewSample(
     '',
     '${name.pascalCase}View',
@@ -52,8 +52,7 @@ Future<void> createView(String name,
         var content = res.body;
         sample.customContent = replaceVars(content, name);
       } else {
-        throw CliException(
-            LocaleKeys.error_failed_to_connect.trArgs([withArgument]));
+        throw CliException(LocaleKeys.error_failed_to_connect.trArgs([withArgument]));
       }
     } else {
       var file = File(withArgument);
@@ -61,8 +60,7 @@ Future<void> createView(String name,
         var content = file.readAsStringSync();
         sample.customContent = replaceVars(content, name);
       } else {
-        throw CliException(
-            LocaleKeys.error_no_valid_file_or_url.trArgs([withArgument]));
+        throw CliException(LocaleKeys.error_no_valid_file_or_url.trArgs([withArgument]));
       }
     }
   }
