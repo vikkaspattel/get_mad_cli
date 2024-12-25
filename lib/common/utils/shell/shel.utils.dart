@@ -47,13 +47,13 @@ class ShellUtils {
     try {
       if (Platform.script.path.contains('flutter')) {
         if (isGit) {
-          await run('flutter pub global activate -sgit https://github.com/jonataslaw/get_mad_cli/', verbose: true);
+          await run('flutter pub global activate -sgit https://github.com/vikkaspattel/get_mad_cli/', verbose: true);
         } else {
           await run('flutter pub global activate get_mad_cli', verbose: true);
         }
       } else {
         if (isGit) {
-          await run('flutter pub global activate -sgit https://github.com/jonataslaw/get_mad_cli/', verbose: true);
+          await run('flutter pub global activate -sgit https://github.com/vikkaspattel/get_mad_cli/', verbose: true);
         } else {
           await run('flutter pub global activate get_mad_cli', verbose: true);
         }
