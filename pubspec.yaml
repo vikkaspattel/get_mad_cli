@@ -1,5 +1,5 @@
 name: get_mad_cli
-version: 0.0.2
+version: 0.0.4
 homepage: 'https://github.com/vikkaspattel/get_mad_cli'
 description: 'UnOfficial Mad version of get_cli, for version 1.8.2'
 environment:
