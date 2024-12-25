@@ -21,7 +21,9 @@ import 'package:${PubspecUtils.projectName}/$_controllerDir';
 class $_bindingName extends Bindings {
   @override
   void dependencies() {
-    Get.put(${_fileName.pascalCase}Controller(),tag: tag);
+    if(!Get.isRegistered<${_fileName.pascalCase}Controller>(tag: tag)) {
+      Get.put(${_fileName.pascalCase}Controller(),tag: tag);
+    }
   }
 }
 ''';

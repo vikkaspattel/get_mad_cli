@@ -1,8 +1,8 @@
-# Get Mad CLI
+**# Get Mad CLI**
 
 A modified version of [get_cli](https://pub.dev/packages/get_cli) with a different structure and code organization.
 
-## Features
+**## Features**
 
 * Uses [get_mad](https://pub.dev/packages/get_mad) package instead of [get](https://pub.dev/packages/get).
 * Controllers:
@@ -13,6 +13,9 @@ A modified version of [get_cli](https://pub.dev/packages/get_cli) with a differe
 	+ Uses `Get.put` instead of `lazyPut`.
 * Initial extension for GetX navigation with multiple stacks and same page.
 
-## Documentation
+
+**to use this cli use commands 'mad' or 'madx'**
+
+**## Documentation**
 
 For more information, see the original [get_cli](https://pub.dev/packages/get_cli) documentation.
